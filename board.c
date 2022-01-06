@@ -7,7 +7,16 @@ extern int g_width;
 extern int g_height;
 
 int getSpace(int x, int y){
-    return *(g_mines + (g_height * y) + x);
+
+    //Board has row major ordering:
+    // 1 2 3 4
+    // 5 6 7 8
+    // ...
+
+    int row_offset = g_width * y; // For each row, add the number of spaces in a row
+    int column_offset = x; // For each column, add one
+
+    return *(g_mines + row_offset + column_offset);
 }
 
 int initBoard(int width, int height, int numMines){
