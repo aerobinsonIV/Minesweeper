@@ -15,7 +15,7 @@ int main(){
     initBoard(5, 8, 12);
 
     printf("Width is %d\n", g_width);
-    printf("Width is %d\n", g_height);
+    printf("Height is %d\n", g_height);
 
     renderBoard();
 

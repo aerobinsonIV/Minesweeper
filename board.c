@@ -6,6 +6,10 @@ extern int * g_revealed;
 extern int g_width;
 extern int g_height;
 
+int getSpace(int x, int y){
+    return *(g_mines + (g_height * y) + x);
+}
+
 int initBoard(int width, int height, int numMines){
     // TODO: Add param validation with different return codes for different problems
 
@@ -16,9 +20,5 @@ int initBoard(int width, int height, int numMines){
     g_mines = (int *) calloc(width * height, sizeof(int));
     g_revealed = (int *) calloc(width * height, sizeof(int));
     
-    return 0;
-}
-
-int getSpace(int x, int y){
     return 0;
 }
