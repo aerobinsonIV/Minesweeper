@@ -39,7 +39,12 @@ void renderBoard(){
 
         //Loop through spaces in a row (moving left to right)
         for(int x = 0; x < g_width; x++){
-            printf("%d", getSpace(x, y, g_mines));
+            if(getSpace(x, y, g_revealed)){
+                printf("%d", getSpace(x, y, g_mines));
+            }else{
+                printf("#");
+            }
+            
             printHorizontalSpace();
         }
         

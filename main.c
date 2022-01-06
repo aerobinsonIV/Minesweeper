@@ -18,6 +18,9 @@ int main(){
     printf("Height is %d\n", g_height);
 
     setSpace(3, 3, g_mines, 1);
+    setSpace(3, 3, g_revealed, 1);
+    setSpace(2, 3, g_revealed, 1);
+    setSpace(1, 3, g_revealed, 1);
 
     renderBoard();
 
