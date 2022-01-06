@@ -18,3 +18,7 @@ int initBoard(int width, int height, int numMines){
     
     return 0;
 }
+
+int getSpace(int x, int y){
+    return 0;
+}

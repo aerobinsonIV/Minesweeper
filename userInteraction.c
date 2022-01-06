@@ -1,5 +1,8 @@
 #define HORIZONTAL_SPACING 2
+
 #include <stdio.h>
+
+#include "board.h"
 
 extern int * g_mines;
 extern int * g_revealed;
@@ -36,7 +39,7 @@ void renderBoard(){
 
         //Loop through spaces in a row (moving left to right)
         for(int x = 0; x < g_width; x++){
-            printf("#");
+            printf("%d", getSpace(x, y));
             printHorizontalSpace();
         }
         
