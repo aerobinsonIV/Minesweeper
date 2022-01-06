@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "board.h"
+#include "userInteraction.h"
 
 int * g_mines;
 int * g_revealed;
@@ -15,6 +16,8 @@ int main(){
 
     printf("Width is %d\n", g_width);
     printf("Width is %d\n", g_height);
+
+    renderBoard();
 
     return 0;
 }
