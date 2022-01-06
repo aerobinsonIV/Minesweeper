@@ -1,3 +1,4 @@
+#define HORIZONTAL_SPACING 2
 #include <stdio.h>
 
 extern int * g_mines;
@@ -6,22 +7,37 @@ extern int * g_revealed;
 extern int g_width;
 extern int g_height;
 
-void renderBoard(){
-    //Render top border
+void printHorizontalSpace(){
+    for(int i = 0; i < HORIZONTAL_SPACING; i ++){
+        printf(" ");
+    }
+}
+
+void printHorizontalBorder(){
     for(int x = 0; x < g_width + 2; x ++){
-        printf("+");    
+        printf("+");
+        printHorizontalSpace();
     }
     printf("\n");
+}
+
+void renderBoard(){
+    // TODO: Add coordinate labels
+
+    //Top border
+    printHorizontalBorder();
 
     //Loop through rows
     for(int y = 0; y < g_height; y ++){
         
         //Left border
         printf("+");
+        printHorizontalSpace();
 
         //Loop through spaces in a row (moving left to right)
         for(int x = 0; x < g_width; x++){
             printf("#");
+            printHorizontalSpace();
         }
         
         //Right border
@@ -29,9 +45,7 @@ void renderBoard(){
         printf("\n");
     }
 
-    //Render bottom border
-    for(int x = 0; x < g_width + 2; x ++){
-        printf("+");    
-    }
-    printf("\n");
+    //Bottom border
+    printHorizontalBorder();
+
 }
