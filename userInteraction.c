@@ -24,6 +24,65 @@ void printHorizontalBorder(){
     printf("\n");
 }
 
+void renderRevealedSpace(int x, int y){
+    int spaceValue = getSpace(x, y, g_mines);
+    
+    if(spaceValue == 0){
+        // If no mine, print space
+        printf(" ");
+    }else if(spaceValue == 1){
+        //Mine
+        printf("X");
+    }
+}
+
+//THIS VERSION OF THE PROGRAM DOES NOT CONSIDER DIAGONALS ADJACENT
+
+//Returns number of adjacent spaces to the given coords with value 1 on specified board array
+int getAdjacentSum(int x, int y, int * boardArray){
+    
+    //XY coordinate pairs of all adjacent spaces
+    const int numAdjacents = 4;
+    int adjX[numAdjacents];
+    int adjY[numAdjacents];
+
+    adjX[0] = x + 1;
+    adjY[0] = y;
+
+    adjX[1] = x - 1;
+    adjY[1] = y;
+
+    adjX[2] = x;
+    adjY[2] = y + 1;
+
+    adjX[3] = x;
+    adjY[3] = y - 1;
+
+    int curX = 0;
+    int curY = 0;
+
+    int adjacentSum = 0;
+
+    // Loop through all adjacent spaces
+    for(int i = 0; i < numAdjacents; i ++){
+        curX = adjX[i];
+        curY = adjY[i];
+
+        // If one of the adjacent spaces is off the board, skip it
+        if(curX < 0 || curX >= g_width){
+            continue;
+        }
+
+        if(curY < 0 || curY >= g_height){
+            continue;
+        }
+
+        adjacentSum += getSpace(curX, curY, boardArray);
+    }
+
+    return adjacentSum;
+}
+
 void renderBoard(){
     // TODO: Add coordinate labels
 
@@ -40,9 +99,11 @@ void renderBoard(){
         //Loop through spaces in a row (moving left to right)
         for(int x = 0; x < g_width; x++){
             if(getSpace(x, y, g_revealed)){
-                printf("%d", getSpace(x, y, g_mines));
+                renderRevealedSpace(x, y);     
+            }else if(getAdjacentSum(x, y, g_revealed) > 0){
+                printf("=");
             }else{
-                printf("#");
+                printf("#");   
             }
             
             printHorizontalSpace();
