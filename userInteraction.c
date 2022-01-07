@@ -122,3 +122,46 @@ void renderBoard(){
     printHorizontalBorder();
 
 }
+
+void clearInputBuffer(){
+    int ch;
+    while (((ch = fgetc(stdin)) != '\n') && (ch != EOF));
+}
+
+// TODO: Change these to reference, more stylistically correct than pointers. Maybe?
+void getMoveFromUser(int * x, int * y){
+    // TODO: Display one-time instruction message at beginning of program
+
+    int _x = 0;
+    int _y = 0;
+
+    int scanfReturn = 0;
+
+    // TODO: Display error message on invalid entry
+
+    // Loop until user enters a valid move
+    while(1){
+        printf("Please enter your move: ");
+        scanfReturn = scanf("%d %d", &_x, &_y);
+        clearInputBuffer();
+
+        // TODO: properly handle user entering nothing
+
+        if(scanfReturn != 2){
+            continue;
+        }
+
+        if(_x < 0 || _x >= g_width){
+            continue;
+        }
+
+        if(_y < 0 || _y >= g_height){
+            continue;
+        }
+
+        break;
+    }
+
+    *x = _x;
+    *y = _y;
+}

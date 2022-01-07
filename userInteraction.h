@@ -3,4 +3,6 @@
 
 void renderBoard();
 
+void getMoveFromUser(int * x, int * y);
+
 #endif
