@@ -31,6 +31,32 @@ int setSpace(int x, int y, int * boardPointer, int value){
     return 0;
 }
 
+void placeMines(int numMines){
+    int minesRemaining = numMines;
+
+    //Set random seed (constant for ease of debugging)
+    // TODO: Change this to be based on current time
+    srand(42069);
+
+    int randX = 0;
+    int randY = 0;
+
+    while(minesRemaining > 0){
+
+        do{
+            //Generate coordinates for a random space on the board until
+            randX = rand() % g_width;
+            randY = rand() % g_height;
+
+            //Try again if we generated a space that already has a mine
+        }while(getSpace(randX, randY, g_mines));
+
+        setSpace(randX, randY, g_mines, 1);
+
+        minesRemaining --;
+    }
+}
+
 int initBoard(int width, int height, int numMines){
     // TODO: Add param validation with different return codes for different problems
 
@@ -40,6 +66,8 @@ int initBoard(int width, int height, int numMines){
     //calloc(num items, size of each item in bytes)
     g_mines = (int *) calloc(width * height, sizeof(int));
     g_revealed = (int *) calloc(width * height, sizeof(int));
+
+    placeMines(numMines);
     
     return 0;
 }

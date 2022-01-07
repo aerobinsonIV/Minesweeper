@@ -1,4 +1,5 @@
 #define HORIZONTAL_SPACING 2
+#define REVEAL_ALL_SPACES 0
 
 #include <stdio.h>
 
@@ -104,7 +105,7 @@ void renderBoard(){
 
         //Loop through spaces in a row (moving left to right)
         for(int x = 0; x < g_width; x++){
-            if(getSpace(x, y, g_revealed)){
+            if(getSpace(x, y, g_revealed) || REVEAL_ALL_SPACES){
                 renderRevealedSpace(x, y);   
             }else{
                 printf("#");   
@@ -120,7 +121,7 @@ void renderBoard(){
 
     //Bottom border
     printHorizontalBorder();
-
+    fflush(stdout);
 }
 
 void clearInputBuffer(){
