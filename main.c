@@ -12,14 +12,19 @@ int g_height;
 
 int main(){
     
-    initBoard(7, 7, 7);
+    initBoard(7, 7, 10);
 
-    int * mainX = malloc(sizeof(int));
-    int * mainY = malloc(sizeof(int));
-    
-    getMoveFromUser(mainX, mainY);
+    int * moveX = malloc(sizeof(int));
+    int * moveY = malloc(sizeof(int));
 
-    printf("You entered %d, %d\n", *mainX, *mainY);
+    //Main loop
+    while(1){
+        renderBoard();
+        
+        getMoveFromUser(moveX, moveY);
+        
+        setSpace(*moveX, *moveY, g_revealed, 1);
+    }
 
     return 0;
 }
